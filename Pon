@@ -1,0 +1,54 @@
+class Point{
+    int x;
+    int y;
+    Point(int a,int b){
+        x=a;
+        y=b;
+    }
+    Point(){
+        
+    }
+}
+public class Pon{
+   static boolean sameLine(Point a,Point b,Point c){
+        if(b.x<=Math.max(a.x,c.x)&&b.x>=Math.min(a.x,c.x)&&b.y<=Math.max(a.y,c.y)&&b.y>=Math.min(a.y,c.y)){
+            return true;
+        }
+        return false;
+    }
+    static int orientation(Point p,Point q,Point r){
+        int val=(q.y-p.y)*(r.x-q.x)-(q.x-p.x)*(r.y-q.y);
+        if(val==0){
+            return 0;
+        }
+        return val>0?1:2;
+    }
+    public static void main(String[] args){
+        Point x=new Point(1,1);
+        Point y=new Point(0,21);
+        Point a=new Point(1,0);
+        Point b=new Point(32,0);
+        int o1=orientation(x,y,a);
+        int o2=orientation(x,y,b);
+        int o3=orientation(a,b,x);
+        int o4=orientation(a,b,y);
+        if(o1!=o2&&o3!=o4){
+            System.out.println(true);
+        }
+        if(o1==0&&sameLine(x,a,y)){
+            System.out.println(true);
+        }
+        if(o2==0&&sameLine(x,b,y)){
+            System.out.println(true);
+        }if(o3==0&&sameLine(a,x,b)){
+            System.out.println(true);
+        }if(o4==0&&sameLine(a,y,b)){
+            System.out.println(true);
+        }//2 line segments intersect or na
+        System.out.println(false);
+        
+    }
+    
+    
+    
+}
